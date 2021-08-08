@@ -8,3 +8,5 @@ app.use(bodyParser.json());
 app.use('/', routes);
 
 export const server = app.listen(port, () => console.log(`App running on port ${port}`));
+
+export default app;
