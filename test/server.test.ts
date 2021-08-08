@@ -30,4 +30,30 @@ describe("POST /", () => {
                 done();
             });
     });
+
+    it("get weather from cities happy path", (done) => {
+        chai.request(app)
+            .post('/weatherFromCities')
+            .send({ "cities": ["London", "Paris"] })
+            .end((error, response) => {
+                response.should.have.status(200);
+                response.body.should.be.a('object');
+                response.body["London"].should.be.a('string');
+                response.body["Paris"].should.be.a('string');
+                done();
+            });
+    });
+
+    it("get weather from cities sad path", (done) => {
+        chai.request(app)
+            .post('/weatherFromCities')
+            .send({ "cities": ["London", "test"] })
+            .end((error, response) => {
+                response.should.have.status(200);
+                response.body.should.be.a('object');
+                response.body["London"].should.be.a('string');
+                response.body["test"].should.equal(`Could not retrieve data, received error code 404`);
+                done();
+            });
+    });
 })
