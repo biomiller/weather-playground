@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import axios from "axios";
 import 'dotenv/config';
 
-const apiKeyString = `&appid=${process.env.OPEN_WEATHER_API_KEY}`;
+const apiKeyString = `&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
 const openWeatherURI = "http://api.openweathermap.org/data/2.5/weather?q="
 
 const getTempsFromCities = async (request: Request, resolve: Response) => {
