@@ -1,18 +1,11 @@
-import express from "express";
-import bodyParser from "body-parser";
+import { Request, Response } from 'express';
 import axios from "axios";
 import 'dotenv/config';
 
-const port = 3001;
 const apiKeyString = `&appid=${process.env.OPEN_WEATHER_API_KEY}`;
 const openWeatherURI = "http://api.openweathermap.org/data/2.5/weather?q="
 
-const app = express();
-app.use(bodyParser.json());
-
-export const server = app.listen(port, () => console.log(`App running on port ${port}`));
-
-app.post("/tempFromCities", async (request, resolve) => {
+const getTempsFromCities = async (request: Request, resolve: Response) => {
 
     const cities: string[] = request.body.cities;
 
@@ -31,4 +24,6 @@ app.post("/tempFromCities", async (request, resolve) => {
             resolve.send(temps);
         }
     });
-})
+}
+
+export default { getTempsFromCities };
