@@ -26,4 +26,25 @@ const getTempsFromCities = async (request: Request, resolve: Response) => {
     });
 }
 
-export default { getTempsFromCities };
+const getWeatherFromCities = async (request: Request, resolve: Response) => {
+
+    const cities: string[] = request.body.cities;
+
+    let weather: { [x: string]: string; } = {};
+
+    cities.forEach(async (city: string) => {
+        await axios
+            .get(`${openWeatherURI}${city}${apiKeyString}`)
+            .then(response => {
+                weather[city] = response.data.weather[0].main;
+            })
+            .catch(error => {
+                weather[city] = `Could not retrieve data, received error code ${error.response.status}`;
+            });
+        if (Object.keys(weather).length === cities.length) {
+            resolve.send(weather);
+        }
+    });
+}
+
+export default { getTempsFromCities, getWeatherFromCities };

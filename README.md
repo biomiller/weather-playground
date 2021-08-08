@@ -1,6 +1,6 @@
 # weather-playground
 
-This is a simple node api to retrieve the current temperature information in celsius for cities from the Open Weather Map API Current Weather Data (https://home.openweathermap.org/users/sign_up)
+This is a simple node api to retrieve the current weather and temperature information (in celsius) for cities from the Open Weather Map API Current Weather Data (https://home.openweathermap.org/users/sign_up)
 
 You will need to get an API key by signing up.
 
@@ -14,7 +14,7 @@ This will deploy the api to `localhost:3001`
 
 # Usage
 
-To retreive data from the api send a POST request to `http://localhost:3001/tempFromCities` with a json body payload, for example:
+To retreive temperature data from the api send a POST request to `http://localhost:3001/tempFromCities` with a json body payload, for example:
 ```
 {"cities":["London", "Berlin"]}
 ```
@@ -29,6 +29,13 @@ curl --header "Content-Type: application/json" \
 ```
 
 Example response: `{"London":17.78,"Berlin":20.53}`
+
+To retreive weather information from the api send a POST request to `http://localhost:3001/weatherFromCities` with a json body payload as described above.
+
+Example response: `{"Berlin": "Clear", "London": "Clouds"}`
+
+
+
 
 ## Tests
 
