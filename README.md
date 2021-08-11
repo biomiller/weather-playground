@@ -40,7 +40,7 @@ Example response: `{"Berlin": "Clear", "London": "Clouds"}`
 An example serverless cdk version of the app is included in the ./aws directory - this uses an api gateway and integrated lambdas. Note that this has not actually been deployed yet!
 
 
-## Tests
+# Tests
 
 Happy and sad path integration tests for the express app can be run using `npm run test`.
 
