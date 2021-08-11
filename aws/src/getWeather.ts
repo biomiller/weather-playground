@@ -4,7 +4,7 @@ import 'dotenv/config';
 const apiKeyString = `&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
 const openWeatherURI = "http://api.openweathermap.org/data/2.5/weather?q="
 
-exports.main = async function (event: { body: string; }, context: any) {
+exports.handler = async function (event: { body: string; }, context: any) {
     const cities: string[] = JSON.parse(event.body).cities;
 
     let weather: { [city: string]: string; } = {};

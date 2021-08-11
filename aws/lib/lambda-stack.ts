@@ -1,13 +1,13 @@
-import { Construct, Duration, NestedStack, NestedStackProps } from "@aws-cdk/core";
+import { Construct, Duration, Stack, StackProps } from "@aws-cdk/core";
 import { Code, Runtime, Function } from "@aws-cdk/aws-lambda";
 import { ManagedPolicy, PolicyStatement, Role, ServicePrincipal } from "@aws-cdk/aws-iam";
 import { LogGroup } from "@aws-cdk/aws-logs";
 
-export interface ILambdaStackProps extends NestedStackProps {
+export interface ILambdaStackProps extends StackProps {
     identifier: string;
 }
 
-export class LambdaStack extends NestedStack {
+export class LambdaStack extends Stack {
     public getWeatherLambdaFunction: Function;
 
     constructor(scope: Construct, id: string, props: ILambdaStackProps) {
@@ -48,15 +48,14 @@ export class LambdaStack extends NestedStack {
             ]
         })
 
-
         this.getWeatherLambdaFunction = new Function(
             this,
             "GetWeatherLambdaFunction",
             {
-                code: Code.fromAsset("./src/getWeather.ts"),
-                description: "A Lambda fucntion to get weather data",
+                code: Code.fromAsset("./aws/src"),
+                description: "A Lambda function to get weather data",
                 functionName: `weather-api-get-weather-${props.identifier}`,
-            handler: ("./src/getWeather.main"),
+                handler: ("./aws/src/getWeather.handler"),
                 role: getWeatherLambdaRole,
                 runtime: Runtime.NODEJS_14_X,
                 timeout: Duration.seconds(30),

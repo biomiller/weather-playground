@@ -1,13 +1,13 @@
-import { Construct, NestedStack, NestedStackProps } from "@aws-cdk/core"
+import { Construct, Stack, StackProps } from "@aws-cdk/core"
 import { LambdaIntegration, RestApi } from "@aws-cdk/aws-apigateway";
 import { Function } from "@aws-cdk/aws-lambda";
 
 
-export interface IApiGatewayStackProps extends NestedStackProps {
+export interface IApiGatewayStackProps extends StackProps {
     identifier: string;
     getWeatherLambda: Function;
 }
-export class ApiGatewayStack extends NestedStack{
+export class ApiGatewayStack extends Stack{
 
     constructor(scope: Construct, id: string, props: IApiGatewayStackProps) {
         super(scope, id, props);

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "test": "mocha -r ts-node/register ./test/* --exit",
-    "start": "npm run build && node ./dist/src/server.js"
+    "test": "mocha -r ts-node/register ./express/test/* --exit",
+    "test-cdk": "jest ./aws/test",
+    "start": "npm run build && node ./dist/express/src/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +21,12 @@
   },
   "homepage": "https://github.com/biomiller/weather-playground#readme",
   "dependencies": {
+    "@aws-cdk/assert": "^1.118.0",
     "@aws-cdk/aws-apigateway": "^1.118.0",
     "@aws-cdk/aws-iam": "^1.118.0",
     "@aws-cdk/aws-lambda": "^1.118.0",
     "@aws-cdk/core": "^1.118.0",
+    "@types/jest": "^27.0.0",
     "aws-cdk": "^1.118.0",
     "aws-lambda": "^1.0.6",
     "axios": "^0.21.1",
@@ -31,7 +34,9 @@
     "chai-http": "^4.3.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jest": "^27.0.6",
     "mocha": "^9.0.3",
+    "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"
   },
