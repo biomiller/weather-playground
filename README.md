@@ -1,6 +1,6 @@
 # weather-playground
 
-This is a simple node api to retrieve the current weather and temperature information (in celsius) for cities from the Open Weather Map API Current Weather Data (https://home.openweathermap.org/users/sign_up)
+This is a simple node express app to retrieve the current weather and temperature information (in celsius) for cities from the Open Weather Map API Current Weather Data (https://home.openweathermap.org/users/sign_up)
 
 You will need to get an API key by signing up.
 
@@ -35,10 +35,13 @@ To retreive weather information from the api send a POST request to `http://loca
 Example response: `{"Berlin": "Clear", "London": "Clouds"}`
 
 
+# AWS CDK
+
+An example serverless cdk version of the app is included in the ./aws directory - this uses an api gateway and integrated lambdas. Note that this has not actually been deployed yet!
 
 
 ## Tests
 
-Happy and sad path integration tests can be run using `npm run test`
+Happy and sad path integration tests for the express app can be run using `npm run test`.
 
-
+CDK tests for the example AWS deployment can be run using `npm run test-cdk`.
